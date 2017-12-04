@@ -18,31 +18,39 @@ public class Formules_Actuariat {
         // TODO code application logic here
     }
     
-    static void probability_surviving (double[] lx, int n){
-    int x=1;
-    int y=1;
-    int z=1;
-    int w = lx.length;
-    double[] npx = null;
-    double[] nqx = null;
-    double[] ndx = null;
-    
-    do {
-        ndx[z] = lx[z+n]-lx[z] ;
-        z=z+1;
-    }while(z<=w); 
-    
-    do {
-        npx[x] = lx[x+n]/lx[x] ;
-        x=x+1;
-    }while(x<=w); //proba of life age x surviving x+n
-    
-    do {
-        nqx[y] = (lx[y]-lx[y+n])/lx[y] ;
-        y=y+1;
-    }while(y<=w); //proba of death age x surviving x+n
+    static double probability_surviving (double[] lx, int x){
+    double px;
+    px = lx[x+1]/lx[x] ;
+    return px;
     }
     
+    static double probability_not_surviving (double[] lx, int x){
+    double qx;
+    qx = (lx[x]-lx[x+1])/lx[x] ;
+    return qx;
+    }
     
+    static double probability_surviving_n (double[] lx, int x, int n){
+    double px;
+    px = lx[x+n]/lx[x] ;
+    return px;
+    }
     
+    static double probability_not_surviving_n (double[] lx, int x, int n){
+    double qx;
+    qx = (lx[x]-lx[x+n])/lx[x] ;
+    return qx;
+    }
+    
+    static double probability_surviving_n_product (double[] lx, int x, int n){
+    double px = 0;
+    int i = 1;
+    while(i < n-1){
+        px = probability_surviving_n (lx, x, i)*probability_surviving_n (lx, x, i+1);
+        i=i+1;
+        }
+    return px;
+    }
+    
+   
 }
