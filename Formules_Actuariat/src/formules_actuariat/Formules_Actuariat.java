@@ -115,7 +115,104 @@ public class Formules_Actuariat {
         return E;
     }
     
-    //Life annuities
+    //Life annuities due at the end of the year
     
+    double life_annuity_up_to_the_death_end (double[] lx, int x, float r){
+        double A;
+        A = N_x(lx, x+1,r)/D_x(lx, x, r);
+        return A;
+    }
     
+    double life_annuity_temporary_end (double[] lx, int x, int n, float r){
+        double A;
+        A = (N_x(lx, x+1,r)-N_x(lx, x+n+1,r))/D_x(lx, x, r);
+        return A;
+    }
+    
+    double life_annuity_deferred_end (double[] lx, int x, int m, float r){
+        double A;
+        A = N_x(lx, x+m+1, r)/D_x(lx, x, r);
+        return A;
+    }
+    
+    double life_annuity_temporary_and_deferred_end(double[] lx, int x, int n, int m, float r){
+        double A;
+        A = (N_x(lx, m+x+1,r)-N_x(lx, x+m+n+1,r))/D_x(lx, x, r);
+        return A;
+    }
+    
+    //Properties
+    
+    double life_annuity_temporary_and_deferred_end_prop (double[] lx, int x, int n, int m, float r){
+        double A;
+        A = (N_x(lx, m+x+1,r)-N_x(lx, x+m+n+1,r))/D_x(lx, x, r);
+        return A;
+    } // A revoir avec les autres
+    
+    double life_annuity_whole_life_end_prop (double[] lx, int x, int n, float r){
+        double A;
+        double B = life_annuity_temporary_end(lx, x, n ,r) ; 
+        A = life_annuity_deferred_end(lx, x, n ,r) + B;
+        return A;
+    }
+    
+     //Life annuities due at the beggining of the year
+    
+    double life_annuity_up_to_the_death_beg (double[] lx, int x, float r){
+        double A;
+        A = N_x(lx, x,r)/D_x(lx, x, r);
+        return A;
+    }
+    
+    double life_annuity_temporary_beg (double[] lx, int x, int n, float r){
+        double A;
+        A = (N_x(lx, x,r)-N_x(lx, x+n,r))/D_x(lx, x, r);
+        return A;
+    }
+    
+    double life_annuity_deferred_beg (double[] lx, int x, int m, float r){
+        double A;
+        A = N_x(lx, x+m, r)/D_x(lx, x, r);
+        return A;
+    }
+    
+    double life_annuity_temporary_and_deferred_beg (double[] lx, int x, int n, int m, float r){
+        double A;
+        A = (N_x(lx, m+x,r)-N_x(lx, x+m+n,r))/D_x(lx, x, r);
+        return A;
+    }
+//Properties
+    
+    double life_annuity_whole_life_beg_prop (double[] lx, int x, int n, int m, float r){
+        double A;
+        double B = life_annuity_temporary_beg(lx, x, n ,r) ; 
+        A = life_annuity_deferred_beg(lx, x, n ,r) + B;
+        return A;
+    }
+ 
+    // Life annuities with several payment each year, due at the end of the period
+  /*  double life_annuity_up_to_the_death_several_end (double[] lx, int x, int k, float r){
+        double A;
+        A = N_x(lx, x,r)/D_x(lx, x, r);
+        return A;
+    }
+    
+    double life_annuity_temporary_several_end (double[] lx, int x, int n, int k, float r){
+        double A;
+        A = (N_x(lx, x,r)-N_x(lx, x+n,r))/D_x(lx, x, r);
+        return A;
+    }
+    
+    double life_annuity_deferred_several_end (double[] lx, int x, int m, int k, float r){
+        double A;
+        A = N_x(lx, x+m, r)/D_x(lx, x, r);
+        return A;
+    }
+    
+    double life_annuity_temporary_and_deferred_several_end (double[] lx, int x, int n, int k, int m, float r){
+        double A;
+        A = (N_x(lx, m+x,r)-N_x(lx, x+m+n,r))/D_x(lx, x, r);
+        return A;
+    }
+    */
 }
