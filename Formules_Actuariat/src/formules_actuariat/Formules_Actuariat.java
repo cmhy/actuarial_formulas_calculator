@@ -145,9 +145,9 @@ public class Formules_Actuariat {
     
     double life_annuity_temporary_and_deferred_end_prop (double[] lx, int x, int n, int m, float r){
         double A;
-        A = (N_x(lx, m+x+1,r)-N_x(lx, x+m+n+1,r))/D_x(lx, x, r);
+        A = pure_endowment(lx,x,m,r)*life_annuity_temporary_end(lx, x+m, n ,r);
         return A;
-    } // A revoir avec les autres
+    } 
     
     double life_annuity_whole_life_end_prop (double[] lx, int x, int n, float r){
         double A;
@@ -191,28 +191,53 @@ public class Formules_Actuariat {
     }
  
     // Life annuities with several payment each year, due at the end of the period
-  /*  double life_annuity_up_to_the_death_several_end (double[] lx, int x, int k, float r){
+    double life_annuity_up_to_the_death_several_end (double[] lx, int x, int k, float r){
         double A;
-        A = N_x(lx, x,r)/D_x(lx, x, r);
+        A = ((life_annuity_up_to_the_death_end(lx, x,r))+((k-1)/(2*k)));
         return A;
     }
     
     double life_annuity_temporary_several_end (double[] lx, int x, int n, int k, float r){
         double A;
-        A = (N_x(lx, x,r)-N_x(lx, x+n,r))/D_x(lx, x, r);
+        A = life_annuity_temporary_end(lx,x, n,r)+((k-1)/(2*k))*(1-pure_endowment(lx,x,n,r));       
         return A;
     }
     
     double life_annuity_deferred_several_end (double[] lx, int x, int m, int k, float r){
         double A;
-        A = N_x(lx, x+m, r)/D_x(lx, x, r);
+        A = life_annuity_deferred_end(lx, x, m, r)+((k-1)/(2*k))*pure_endowment(lx,x,m,r);
         return A;
     }
     
     double life_annuity_temporary_and_deferred_several_end (double[] lx, int x, int n, int k, int m, float r){
         double A;
-        A = (N_x(lx, m+x,r)-N_x(lx, x+m+n,r))/D_x(lx, x, r);
+        A = pure_endowment(lx,x,m,r)*life_annuity_temporary_several_end(lx, x+m, n, k, r);
         return A;
     }
-    */
+    
+    // Life annuities with several payment each year, due at the beggining of the period
+    double life_annuity_up_to_the_death_several_beg (double[] lx, int x, int k, float r){
+        double A;
+        A = ((life_annuity_up_to_the_death_beg(lx, x,r))+((k-1)/(2*k)));
+        return A;
+    }
+    
+    double life_annuity_temporary_several_beg (double[] lx, int x, int n, int k, float r){
+        double A;
+        A = life_annuity_temporary_beg(lx,x, n,r)+((k-1)/(2*k))*(1-pure_endowment(lx,x,n,r));       
+        return A;
+    }
+    
+    double life_annuity_deferred_several_beg (double[] lx, int x, int m, int k, float r){
+        double A;
+        A = life_annuity_deferred_beg(lx, x, m, r)+((k-1)/(2*k))*pure_endowment(lx,x,m,r);
+        return A;
+    }
+    
+    double life_annuity_temporary_and_deferred_several_beg (double[] lx, int x, int n, int k, int m, float r){
+        double A;
+        A = pure_endowment(lx,x,m,r)*life_annuity_temporary_several_beg(lx, x+m, n, k, r);
+        return A;
+    }
+    
 }
