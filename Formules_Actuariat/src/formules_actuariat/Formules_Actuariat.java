@@ -261,5 +261,30 @@ public class Formules_Actuariat {
        return R;
     }
     
+    //Insurance in case of Death
+   
+    double whole_life_A_x(double[] lx, int x, float r){ 
+        return M_x(lx,x,r)/D_x(lx,x,r);
+    }
+    
+    double term_insurance_n_A_x(double[] lx, int x, int n, float r){ 
+        return (M_x(lx,x,r)-M_x(lx,x+n,r))/D_x(lx,x,r);
+    }
+    
+    double term_insurance_differed_m_A_x(double[] lx, int x, int n, int m, float r){ 
+        return (M_x(lx,m+x,r)-M_x(lx,x+m+n,r))/D_x(lx,x,r);
+    }
+    
+    double whole_life_diferred_m_A_x(double[] lx, int x, int m, float r){ 
+        return M_x(lx,x+m,r)/D_x(lx,x,r);
+    }
+    
+    double term_insurance_increasing_life_annuities(double[] lx, int x, int n, float r){ 
+        return (R_x(lx,x,r)-R_x(lx,x+n,r)-n*M_x(lx,x+n,r))/D_x(lx,x,r);
+    }
+    
+    double term_insurance_decreasing_life_annuities(double[] lx, int x, int n, float r){ 
+        return (n*M_x(lx,x+n,r)-(R_x(lx,x+1,r)-R_x(lx,x+n,r)))/D_x(lx,x,r);
+    }
     
 }
