@@ -20,7 +20,7 @@ import java.io.IOException;
  */
 
 
-public class Formules_Actuariat {
+public class Formules_Actuariat_Kasse {
 
     /**
      * @param args the command line arguments
@@ -335,10 +335,12 @@ public class Formules_Actuariat {
     
     //Insurance in case of Life and Death
     
-    //Endowement, trouver la valeur de C
+    double endowment (int x, int n, double C, float r){
+        return (C*(D_x( x+n, r)+(M_x(x,r)-M_x(x+n,r))))/D_x(x,r);
+    }
     
-    double combined_endowment (int x, int n, float r){
-        return (C_x( 1, r)*D_x( x+n, r)+C_x( 2, r)*(M_x(x,r)-M_x(x+n,r)))/D_x(x,r);
+    double combined_endowment (int x, int n, double C1, double C2, float r){
+        return (C1*D_x( x+n, r)+C2*(M_x(x,r)-M_x(x+n,r)))/D_x(x,r);
     }
     
     public static void main(String[] args) {
