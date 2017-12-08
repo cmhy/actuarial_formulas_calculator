@@ -287,4 +287,11 @@ public class Formules_Actuariat {
         return (n*M_x(lx,x+n,r)-(R_x(lx,x+1,r)-R_x(lx,x+n,r)))/D_x(lx,x,r);
     }
     
+    //Insurance in case of Life and Death
+    
+    //Endowement, trouver la valeur de C
+    
+    double combined_endowment (double[] lx, int x, int n, float r){
+        return (C_x(lx, 1, r)*D_x(lx, x+n, r)+C_x(lx, 2, r)*(M_x(lx,x,r)-M_x(lx,x+n,r)))/D_x(lx,x,r);
+    }
 }
