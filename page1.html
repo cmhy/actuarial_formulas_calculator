@@ -29,18 +29,38 @@
             <p class="alone">Survival probabilities at a given age</p>
             
         </div>
-        
+        <script>
+                    function x(){
+                    var entree=document.getElementById("age1").value;
+                    alert(entree);
+                    //return entree;
+                    }
+                </script>
          <div class="formulas">
 
             <p class="description">Probability to survive from age x to age x+1
                 <input type="button" id="px" onclick="window.open('px.html','popup','width=300,height=160,left=200,top=200,scrollbars=1')" style="color: palevioletred;" value="Details" />
              </p>
           
-             <p class="param"> age x = <input type="text" name="age" size="10"><!-- ajouter champ pour entrer valeur--></p>
-            <p class="computation">
-                <input type="button" id="compute_the_result" onclick="sauverNomCdPostal()" style="color: green; width: 250px;" value="Compute"  /> 
-             </p> 
-            <p class="result"></p>
+             <p class="param" > age x = <input id ="age1" type="text" name="age" size="10"><!-- ajouter champ pour entrer valeur--></p>
+             <p class="computation"><input type="button" id="compute_the_result" 
+                       onclick=x()  style="color: green; width: 250px;" value="Compute"/> </p>
+             <p class="result">
+               
+             </p>
+              
+             
+               <OBJECT codetype="application/x-java-applet"  classid="java:/home/user/Bureau/prototype/Formules_Actuariat/Acturiat/build/classes/Actuariat.class" 
+                       codebase="bin" width="100" height="20">
+             <param name="x" value="0">
+                    fucking Applet
+                   
+              
+                </OBJECT>
+             
+             
+             
+            
             
             
 
